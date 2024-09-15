@@ -11,6 +11,28 @@ Any machine is faster and more robust than a **Luckyfox** or **OpenWrt** device.
 
 ---
 
+### Diagram
+```mermaid
+graph TD
+    PS4(PlayStation 4):::ps4 -->|PPPoE Traffic| A(Router)
+    
+    subgraph Router["Router (OpenWrt/Asuswrt-Merlin)"]
+        A(ebtables):::ebtables
+        A -->|Redirects PPPoE Traffic to MAC Address| MAC
+    end
+    
+    MAC(Laptop/Raspberry Pi):::device -->|Handles PPPoE Traffic| PPPWN(PC With PPPWN):::exploit
+    PPPWN -->|Processed PPPoE Traffic| PS4
+
+    classDef ps4 fill:#4169E1,stroke:#000,stroke-width:2px,color:#fff;
+    classDef router fill:#FF6347,stroke:#000,stroke-width:2px,color:#fff;
+    classDef ebtables fill:#FFD700,stroke:#000,stroke-width:2px,color:#000;
+    classDef device fill:#32CD32,stroke:#000,stroke-width:2px,color:#fff;
+    classDef exploit fill:#8A2BE2,stroke:#000,stroke-width:2px,color:#fff;
+    
+    style Router fill:#F0F8FF,stroke:#000,stroke-width:2px;
+```
+
 ## Steps to Set Up PPPWN Sink
 
 ### 1. Get the MAC Address of Your Network Card (or Raspberry Pi)
