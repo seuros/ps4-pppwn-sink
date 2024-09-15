@@ -87,10 +87,6 @@ ebtables -t nat -F PREROUTING
 ebtables -t nat -A PREROUTING -i br0 -p 0x8863 -s ! $MACADDRESS -j dnat --to-destination $MACADDRESS
 ebtables -t nat -A PREROUTING -i br0 -p 0x8864 -s ! $MACADDRESS -j dnat --to-destination $MACADDRESS
 
-# Add the general rules (without MAC exclusion)
-ebtables -t nat -A PREROUTING -p 0x8863 -j dnat --to-destination $MACADDRESS
-ebtables -t nat -A PREROUTING -p 0x8864 -j dnat --to-destination $MACADDRESS
-
 ```
 
 Replace `d8:5e:d3:89:df:cf` with the actual MAC address of your network card or Raspberry Pi.
